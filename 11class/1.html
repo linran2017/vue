@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<style>
+    .color{color: red;}
+    .font{font-size: 50px;}
+</style>
+<div id="hdw">
+<h1 :class="hd">后盾人</h1>
+<h2 :class="[success,font]">后盾网</h2>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            hd : {color:true,font:false},
+            success : 'color',
+            font : 'font'
+        }
+    })
+</script>
+</body>
+</html>

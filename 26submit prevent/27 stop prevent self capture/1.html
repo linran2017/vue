@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+<div @click="box" :style="{border:'1px red solid'}">
+   <!-- stop阻止冒泡，阻止父级元素的事件发生；prevent点击链接时阻止跳转页面-->
+    <a @click.stop.prevent="links" href="http://www.houdunwang.com">后盾网</a>
+</div>
+    <!--self只点击此元素时事件才会发生，点击其子元素时事件不会发生-->
+    <div @click.self="box" :style="{border:'1px red solid'}">
+    <a @click.prevent="links" href="http://www.houdunwang.com">后盾网</a>
+</div>
+   <!-- capture当点击其子元素时，会先触发此元素（父级元素）的事件，然后再触发被点击元素的事件-->
+    <div @click.capture="box" :style="{border:'1px red solid'}">
+        <a @click.prevent="links" href="http://www.houdunwang.com">后盾网</a>
+    </div>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        methods:{
+            box(){
+                alert('box');
+            },
+            links(){
+                alert('后盾网');
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vuex.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <list></list>
+    <footer-car></footer-car>
+</div>
+<script type="text/x-template" id="list">
+<div>
+    <h1>购物车</h1>
+    <table border="1" width="500">
+        <tr>
+            <th>编号</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>数量</th>
+            <th>合计</th>
+        </tr>
+        <tr v-for="v in goods">
+            <td>{{v.id}}</td>
+            <td>{{v.title}}</td>
+            <td>{{v.price}}元</td>
+            <td>
+                <input type="number" v-model="v.num" />
+            </td>
+            <td>{{v.totalPrice}}元</td>
+        </tr>
+    </table>
+</div>
+</script>
+<script type="text/x-template" id="footerCar">
+<div>
+    <h3>总价：{{totalPrice}}元</h3>
+</div>
+</script>
+<script>
+    //设置一个容器，用来存储数据
+    let store=new Vuex.Store({
+        //设置数据
+        state:{
+            goods:[
+                {id:1,title:'联想电脑',price:4000,num:3},
+                {id:2,title:'华为电脑',price:5000,num:6}
+            ]
+        },
+        //通过计算获得商品总价
+        getters:{
+            totalPrice:state=>{
+                let totalPrice=0;
+                //循环每一组商品
+                state.goods.forEach((v)=>{
+                    //商品总价等于每一个商品的数量乘以商品价格之和
+                    totalPrice+=v.num*v.price;
+                })
+                //返回计算后是商品总价
+                return totalPrice;
+            },
+            //获得每一个商品的总价
+            goods(state){
+                let goods=state.goods;
+                //循环state里每一组商品的信息
+                goods.forEach((v)=>{
+                    //每一个商品的总价等于商品价格乘以商品数量
+                    v.totalPrice=v.price*v.num;
+                })
+                return goods;
+            }
+        }
+    })
+
+    var list={
+        template:'#list',
+        //使用计算属性，从容器里获得数据，当容器里的数据发生变化时，计算属性的值也会变化
+        //页面的值也会跟着变化
+        computed:{
+            goods(){
+                //返回getters里计算好的商品信息
+                return this.$store.getters.goods
+            }
+        }
+    }
+
+    var footerCar={
+        template:'#footerCar',
+        computed:{
+            totalPrice(){
+                //返回getters里计算后的商品总价
+                return this.$store.getters.totalPrice;
+            }
+        }
+    }
+    new Vue({
+        el:'#hdw',
+        //把存储的数据放在根组件里，根组件和子组件都可以用
+        store,
+        components:{list,footerCar}
+    })
+</script>
+</body>
+</html>

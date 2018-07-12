@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <!--简写法，dblclick双击-->
+    <button @dblclick="hd">点击</button>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        methods:{
+            hd(){
+                alert(1);
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<style>
+    .success{display: inline-block;}
+    .error{display: none;}
+</style>
+<div id="hdw">
+<li v-for="v in news">
+    <!-- 如果为真就是success,否则就是error-->
+<span :class="v.status?'success':'error'">{{v.title}}</span>
+    <!-- v-on:click 点击事件；v-if 是否显示-->
+    <button v-on:click="changeStatus(v,false)" v-if="v.status">删除</button>
+    <button v-on:click="changeStatus(v,true)" v-if="!v.status">恢复</button>
+</li>
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        //方法
+        methods : {
+            //点击按钮，执行changeStatus方法
+            changeStatus : function (item,status) {
+                //改变元素的status的值
+                item.status=status;
+            }
+        },
+        data : {
+            news :[
+                {title:'后盾人',status:true},
+                {title:'后盾网',status:true}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

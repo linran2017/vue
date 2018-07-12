@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-link to="/hdphp">hdcms</router-link>
+    <router-link to="/hdcms">hdcms</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    //定义模板
+    const hdphp={
+        template:'<h1>hdphp</h1>'
+    }
+    const hdcms={
+        template:'<h1>hdcms</h1>'
+    }
+    //把组件交给路由器
+    let routes=[
+        {path:'/hdphp',component:hdphp},
+        {path:'/hdcms',component:hdcms}
+    ]
+/*    let route=new VueRouter({
+        routes:routes
+    })*/
+       let router=new VueRouter({routes})
+    /*let route=new VueRouter({
+        routes:[
+            {path:'/hdphp',component:hdphp},
+            {path:'/hdcms',component:hdcms}
+        ]
+    })*/
+    var app=new Vue({
+        el:'#hdw',
+        //路由
+        //router:router
+        router
+    })
+</script>
+</body>
+</html>

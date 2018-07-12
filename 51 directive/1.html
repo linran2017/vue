@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+   <!--<span v-star>后盾人</span>-->
+   <input type="text" v-model="title" v-hd.focus="title" />
+</div>
+<script>
+    //绑定
+    /*Vue.directive('star',{
+        bind(el,bind){
+            console.log(bind);
+        }
+    });*/
+    //更新
+    /*Vue.directive('hd',{
+        update(el,bind){
+            console.log(bind);
+        }
+    })*/
+    //绑定和更新
+    Vue.directive('hd',function (el,bind) {
+        console.log(bind);
+    })
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            title:'houdunwang.com'
+        }
+
+    })
+</script>
+</body>
+</html>

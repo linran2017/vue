@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+<!--sync当子组件的值发生变化时，父组件的值也会发生-->
+<shop :lists.sync="goods"></shop>
+    总价：{{totalPrice}}元
+</div>
+<script type="text/x-template" id="shop">
+<table border="1" width="500">
+    <tr>
+        <td>商品名称</td>
+        <td>商品数量</td>
+        <td>商品价格</td>
+    </tr>
+    <tr v-for="v in lists">
+        <td>{{v.name}}</td>
+        <td>{{v.price}}</td>
+        <td><input type="number" v-model="v.num"/></td>
+    </tr>
+</table>
+</script>
+<script>
+    var shop={
+        template:'#shop',
+        props:['lists'],
+        methods:{
+            sum(){
+                //当子组件的数量变化时，调用父组件的方法，计算出总价
+                this.$emit('sum');
+            }
+        }
+    }
+    var app=new Vue({
+        el:'#hdw',
+        components:{shop},
+        computed:{
+            totalPrice(){
+                var sum=0;
+                this.goods.forEach((v)=>{
+                    sum+=v.price*v.num;
+                })
+                return sum;
+            }
+        },
+        data:{
+            goods:[
+                {name:'iphone7',price:7000,num:1},
+                {name:'iphoe5plus',price:5000,num:1}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

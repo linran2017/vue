@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div  id="hdw">
+<input type="text" v-model="n1" />+<input type="text" v-model="n2" />
+=<input type="text" v-model="sum" />
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            n1 : 0,
+            n2 : 0
+        },
+        //运算
+        computed : {
+            sum () {
+                return this.n1*1+this.n2*1;
+            }
+        }
+    })
+</script>
+</body>
+</html>

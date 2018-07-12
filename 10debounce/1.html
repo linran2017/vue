@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../node_modules/axios/dist/axios.js"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <input type="text" v-model="word" />
+    结果：{{result}}
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        watch:{
+            //每隔3秒请求一次
+            word : _.debounce(
+                function (newV,oldV) {
+                    axios.get('10.php?word='+newV).then(function (response) {
+                        console.log(response);
+                        app.result=response.data;
+                    })
+                },3000
+            )
+        },
+        data:{
+            word:'',
+            result:''
+        }
+    })
+</script>
+</body>
+</html>

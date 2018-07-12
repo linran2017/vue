@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<style>
+    .hd-enter,.hd-leave-to{
+        opacity: 0;
+    }
+    .hd-enter-to{
+        font-size: 300px;
+    }
+    .hd-enter-active{
+        transition:all 2s;
+        color:red;
+    }
+    .hd-leave-active{
+        transition:all .5s;
+        color:green;
+    }
+</style>
+<div id="hdw">
+    <button @click="type=!type">按钮</button>
+    <transition name="hd">
+        <h1 v-if="type">后盾人</h1>
+    </transition>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            type:true
+        }
+    })
+</script>
+</body>
+</html>

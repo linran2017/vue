@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <form action="" method="post" class="form-horizontal" role="form">
+        <bs-panel>
+            <h3 slot="title">文章管理</h3>
+            <bs-input slot="body" name="标题" value="后盾人"></bs-input>
+            <bs-input slot="body" name="点击数" value="100"></bs-input>
+        </bs-panel>
+
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/x-template" id="bsPanel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <slot name="title"></slot>
+        </div>
+        <div class="panel-body">
+            <slot name="body"></slot>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="bsInput">
+    <div class="form-group">
+        <label for="inputID" class="col-sm-2 control-label">{{name}}:</label>
+        <div class="col-sm-10">
+            <input type="text" name="name" id="inputID" class="form-control" :value="value" title="" required="required">
+        </div>
+    </div>
+</script>
+<script>
+    var bsPanel={
+        template:'#bsPanel'
+    }
+    var bsInput={
+        template:'#bsInput',
+        props:['name','value']
+    }
+    var app=new Vue({
+        el:'#hdw',
+        components:{bsPanel,bsInput}
+    })
+</script>
+</body>
+</html>

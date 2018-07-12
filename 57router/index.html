@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-link to="/content">内容</router-link>
+    <router-view></router-view>
+</div>
+<script type="text/x-template" id="content">
+    <div>
+        id:{{id}}
+    </div>
+</script>
+<script>
+    var content={
+        template:'#content',
+        data(){
+            return {
+                //参数默认为0
+                id:0
+            }
+        },
+        //挂彩
+        mounted(){
+            this.id=this.$route.params.id;
+            //最开始没有传参id就默认为1
+            if(!this.id){
+                this.id=1;
+            }
+        }
+    }
+    let routes=[
+        //'?'表示一个或多个参数，参数有也行，没有也行，为了比配路由，不比配就不会显示模板
+        {path:'/content/:id?',component:content}
+    ];
+    let router=new VueRouter({routes});
+    new Vue({
+        el:'#hdw',
+        router
+    })
+</script>
+</body>
+</html>

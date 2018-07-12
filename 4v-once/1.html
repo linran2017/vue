@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <h1>{{title}}</h1>
+    <!-- v-once 只绑定一次-->
+    <h2 v-once>{{title}}</h2>
+    <!-- v-model 双向绑定-->
+    <input type="text" v-model="title" />
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            title : '后盾人'
+        }
+    })
+</script>
+</body>
+</html>

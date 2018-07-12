@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <table>
+        <tr>
+            <td>编号</td>
+            <td>标题</td>
+            <td>讲师</td>
+        </tr>
+        <tr v-for="v in news">
+            <td>{{v.id}}</td>
+            <td>{{v.title}}</td>
+            <td>{{name}}</td>
+        </tr>
+    </table>
+    <hr/>
+    <table>
+        <tr>
+            <td>序号</td>
+            <td>编号</td>
+            <td>标题</td>
+            <td>讲师</td>
+        </tr>
+        <tr v-for="(v,key) of news">
+            <td>{{key+1}}</td>
+            <td>{{v.id}}</td>
+            <td>{{v.title}}</td>
+            <td>{{name}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            news : [
+                {id : 11,title : '后盾人'},
+                {id : 23,title : '后盾网'},
+                {id : 35,title : '后盾cms'}
+            ],
+            name : '向军老师'
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+oss管理
+用户名：
+video
+
+AccessKeyID：
+LTAIeh3svu38RSsu
+
+AccessKeySecret：
+XVRLGgiJBoc3j7pEd65RKl8AX0GRkV
+
+block:
+laravelvideo
+
+外网域名:
+laravelvideo.oss-cn-hangzhou.aliyuncs.com

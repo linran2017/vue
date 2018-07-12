@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-view></router-view>
+</div>
+<!--首页模板-->
+<script type="text/x-template" id="home">
+<div>
+    <li v-for="v in news">
+        <router-link :to="{name:'content',params:{id:v.id}}">{{v.title}}</router-link>
+    </li>
+    <router-view></router-view>
+</div>
+</script>
+<!--内容模板-->
+<script type="text/x-template" id="content">
+<div>
+    <h1>{{field.title}}</h1>
+    <p>{{field.content}}</p>
+    <router-link to="/">返回首页</router-link>
+</div>
+</script>
+<script>
+    //新闻的数据
+    var data=[
+        {id:1,title:'hdphp开源框架',content:'这是内容……'},
+        {id:2,title:'hdcms内容管理系统',content:'这是内容……'}
+    ];
+    //首页模板
+    var home={
+        template:'#home',
+        data(){
+            return {
+                news:data
+            }
+        }
+    }
+    //内容模板
+    const content={
+        template:'#content',
+        data(){
+            return {
+                field:{}
+            }
+        },
+        //挂彩，页面加载时就把数据初始化，里面的代码会执行
+        mounted(){
+            //把点击的id值赋值给id
+            var id=this.$route.params.id;
+            console.log(id);
+            //循环新闻的data数组中的数据
+            for(let k=0;k<data.length;k++){
+                //如果点击的id等于数据这一条数据中的id
+                if(data[k].id==id){
+                    console.log(data[k]);
+                    //就把data[k]这一条数据赋值给this.field，
+                    // 为了在内容页显示与链接中id值相对应的这一组数据
+                    this.field=data[k];
+                }
+            }
+        }
+    }
+    //配置父路由和子路由
+    let routes=[
+        {path:'/',component:home,children:[
+            {path:'/content/:id',component:content,name:'content'},
+        ]}
+    ];
+    //把组件交给路由器
+    let router=new VueRouter({routes});
+    new Vue({
+        el:'#hdw',
+        router
+    })
+</script>
+</body>
+</html>

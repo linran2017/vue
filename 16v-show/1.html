@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <!-- v-if 是让元素存在或消失-->
+    <h1 v-if="status">后盾人</h1>
+    <!-- v-show 是让元素显示或隐藏-->
+    <h2 v-show="status">后盾人</h2>
+    <input type="checkbox" v-model="status" />
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            status : true
+        }
+    })
+</script>
+</body>
+</html>

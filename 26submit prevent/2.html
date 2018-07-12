@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <h1>{{times}}</h1>
+    <!--阻止表单提交刷新页面的简写方法-->
+    <form action="" @submit.prevent="post('hdcms')">
+        <button>提交</button>
+    </form>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            times:new Date()
+        },
+        methods:{
+            post(al){
+                alert(al);
+            }
+        }
+    })
+</script>
+</body>
+</html>

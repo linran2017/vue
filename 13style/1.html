@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <!--多种方式使用vue控制元素样式-->
+    <span :style="{color:'red'}">后盾人</span><br/>
+    <span :style="{color:green}">后盾网</span><br/>
+    <span :style="hd">后盾官网</span><br/>
+    <span :style="[hd]">houdunwang.com</span>
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            green : 'green',
+            hd : {color:'red',fontSize:'25px'}
+        }
+    })
+</script>
+</body>
+</html>

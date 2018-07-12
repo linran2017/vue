@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+   <hd></hd>
+   <hd-news></hd-news>
+</div>
+<script>
+    Vue.component('hd',{
+        template:'<h1>后盾人，人人做后盾</h1>'
+    })
+    var hdNews={
+        template:'<h2>后盾新闻</h2>'
+    };
+    var app=new Vue({
+        el:'#hdw',
+        components:{hdNews}
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <textarea v-model="current_content" rows="10" cols="50"></textarea><br/>
+    <button v-on:click="store('first')">在第一行发表</button>
+    <button v-on:click="store('last')">在最后一行发表</button>
+    <br/>
+    <button v-on:click="del('first')">删除第一行</button>
+    <button v-on:click="del('last')">删除最后一行</button>
+    <br/>
+<li v-for="v in comment">
+    {{v.content}}
+</li>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        methods:{
+            store(type){
+                var content={content:this.current_content};
+                switch (type){
+                    case 'first':
+                        //在数组头部添加元素
+                        this.comment.unshift(content);
+                        break;
+                    case 'last':
+                        //在数组末尾添加元素
+                        this.comment.push(content);
+                        break;
+                }
+                this.current_content='';
+            },
+            del(type){
+                switch (type){
+                    case 'first':
+                        this.comment.shift();
+                        break;
+                    case 'last':
+                        this.comment.pop();
+                        break;
+                }
+            }
+        },
+        data:{
+            current_content:'',
+            comment:[
+                {content:'后盾人'},
+                {content:'后盾网'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <form action="" method="post" class="form-horizontal" role="form">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">文章管理</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">标题:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" v-model="field.title" id="inputID" class="form-control" value="" title=""
+                               required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">点击数:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="click" v-model="field.click" id="inputID" class="form-control" value="" title=""
+                               required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">链接:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="url" v-model="field.url" id="inputID" class="form-control" value="" title=""
+                               required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">描述:</label>
+                    <div class="col-sm-10">
+                        <textarea rows="5" name="description" class="form-control" v-model="field.description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">类型:</label>
+                    <div class="col-sm-10">
+                       <div class="radio-inline">
+                           <input type="radio" name="type" v-model="field.type" value="sand" />发布
+                       </div>
+                        <div class="radio-inline">
+                            <input type="radio" name="type" v-model="field.type" value="draft" />草稿
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputID" class="col-sm-2 control-label">属性:</label>
+                    <div class="col-sm-10">
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="flag" v-model="field.flag" value="hot"/>热门
+                        </div>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" name="flag" v-model="field.flag" value="recommend"/>推荐
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            field:{
+                title:'后盾人',
+                click:345,
+                url:'hodunren.com',
+                description:'后盾人，人人做后盾',
+                type:'sand',
+                flag:[]
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+<hd-news :show-del-button="1" :lists="news"></hd-news :show-del-button="true">
+</div>
+<script type="text-x/template" id="hdNews">
+<div>
+    {{showDelButton}}
+    <li v-for="v in lists" v-if="showDelButton">
+        {{v.title}}
+    </li>
+</div>
+</script>
+<script>
+    var hdNews={
+        template:'#hdNews',
+        //props验证
+        props:{
+           /* showDelButton:{
+                //类型必须为布尔值或数字
+                type:[Boolean,Number],
+                //必须传值
+                required:true
+            },*/
+           showDelButton:{
+               //传入的值必须是数字1或0
+               validator(v){
+                   return v===1 || v===0;
+               }
+           },
+            lists:{
+                type:Array,
+                //如果没有值就为默认返回的内容
+                default(){
+                    return [{title:'后盾人'}]
+                }
+            }
+        }
+    }
+    var app=new Vue({
+        el:'#hdw',
+        components:{hdNews},
+        data:{
+            news:[
+                {title:'hdcms'},
+                {title:'hdphp'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

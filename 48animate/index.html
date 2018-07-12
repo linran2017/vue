@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="../animate.css" />
+</head>
+<body>
+<div id="hdw">
+    <button @click="type=!type">按钮</button>
+    <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+        <h1 v-if="type">后盾人</h1>
+    </transition>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            type:true
+        }
+    })
+</script>
+</body>
+</html>

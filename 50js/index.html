@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../velocity.min.js"></script>
+</head>
+<body>
+
+<div id="hdw">
+    <button @click="type=!type">按钮</button>
+    <transition @before-enter="beforeEnter" @enter="enter" @leave="leave" :css="false">
+        <h1 v-if="type">后盾人</h1>
+    </transition>
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            type:true
+        },
+        methods:{
+            beforeEnter(el){
+                el.style.opacity=0;
+            },
+            enter(el,done){
+                Velocity(el,{opacity:1,rotateX:'360deg'},{duration:2000,complete:done})
+            },
+            leave(el,done){
+                Velocity(el,{opacity:0,rotateX:'-360deg'},{duration:2000,complete:done})
+            }
+        }
+    })
+</script>
+</body>
+</html>

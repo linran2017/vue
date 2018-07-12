@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <lists :data="news">
+        <!--scope通过父组件定义子组件模板结构-->
+        <template scope="v">
+            <li>
+                <h1>{{v.field.title}}</h1>
+            </li>
+        </template>
+    </lists>
+</div>
+<script type="text/x-template" id="lists">
+<ul>
+    <slot v-for="v in data" :field="v"></slot>
+   <!-- <li v-for="v in data">
+        {{v.title}}
+    </li>-->
+</ul>
+</script>
+<script>
+    var lists={
+        template:'#lists',
+        props:['data']
+    }
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            news:[
+                {title:'后盾人'},
+                {title:'后盾网'}
+            ]
+        },
+        components:{lists}
+    })
+</script>
+</body>
+</html>

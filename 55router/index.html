@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-link to="/content">内容</router-link>
+    <router-view></router-view>
+</div>
+<script type="text/x-template" id="content">
+<div>
+id:{{$route.params.id}} cid:{{$route.params.cid}}<br/>
+    <button @click="show">检测参数</button>
+</div>
+</script>
+<script>
+    var content={
+        template:'#content',
+        methods:{
+            show(){
+                //打印路由参数
+                console.log(this.$route.params);
+            }
+        }
+    }
+    let routes=[
+        //设置路由参数
+        {path:'/content/:id/show/:cid.html',component:content}
+    ]
+    let router=new VueRouter({routes});
+    new Vue({
+        el:'#hdw',
+        router
+    })
+</script>
+</body>
+</html>

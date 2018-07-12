@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <input type="text" v-model="word" />
+    结果是:{{result}}
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        //监听变量
+        watch:{
+            word : function (newV,oldV) {
+                console.log(newV+'=>'+oldV);
+                axios.get('9.php?word='+newV).then(function (response) {
+                    console.log(response);
+                    app.result=response.data;
+                })
+            }
+        },
+        data:{
+            word:'',
+            result:''
+        }
+    })
+</script>
+</body>
+</html>

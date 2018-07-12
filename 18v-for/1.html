@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <li v-for="(v,key,num) in user">
+        {{num}}->{{key}}->{{v}}
+    </li>
+    <hr/>
+    <table border="1" width="200">
+        <tr v-for="v in 20">
+            <td>{{v}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            user:{
+                name:'张三',
+                age:25,
+                sex:'男'
+            }
+        }
+    })
+</script>
+</body>
+</html>

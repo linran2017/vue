@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-view></router-view>
+    <router-view name="news"></router-view>
+    <router-view name="slide"></router-view>
+</div>
+<script type="text/x-template" id="menu">
+<div>
+    <a style="padding: 10px;" v-for="v in menu" href="">{{v.title}}</a>
+</div>
+</script>
+<script type="text/x-template" id="news">
+    <div>
+        <p v-for="v in news">{{v.title}}</p>
+    </div>
+</script>
+<script type="text/x-template" id="slide">
+    <div>
+        <li v-for="v in slide">{{v.title}}</li>
+    </div>
+</script>
+<script>
+    var menu={
+        template:'#menu',
+        data(){
+            return {
+                menu:[
+                    {title:'前段课程'},
+                    {title:'后台php课程'}
+                ]
+            }
+        }
+    }
+    var news={
+        template:'#news',
+        data(){
+            return {
+                news:[
+                    {title:'后盾网'},
+                    {title:'后盾IT教育'}
+                ]
+            }
+        }
+    }
+    var slide={
+        template:'#slide',
+        data(){
+            return {
+                slide:[
+                    {title:'hdphp'},
+                    {title:'hdcms'}
+                ]
+            }
+        }
+    }
+    let routes=[
+        {path:'/',components:{
+            default:menu,
+            news:news,
+            slide:slide
+        }}
+    ];
+    let router=new VueRouter({routes});
+    new  Vue({
+        el:'#hdw',
+        router
+    })
+</script>
+</body>
+</html>

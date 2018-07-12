@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hd">
+    {{title}}
+</div>
+<script>
+    //创建一个应用
+    var app=new Vue({
+        //el 代表元素
+        el:'#hd',
+        //数据
+        data:{
+            title : '后盾人'
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<style>
+    .red{
+        color: red;
+    }
+    .green{
+        color: green;
+    }
+    .blue{
+        color: blue;
+    }
+</style>
+<div  id="hdw">
+    <!--三种写法-->
+    <h1 v-bind:class="hd">后盾人</h1>
+    <h1 v-bind:class="'green'">hdphp</h1>
+    <h1 :class="hw">后盾网</h1>
+</div>
+<script>
+    var app=new Vue({
+        el : '#hdw',
+        data : {
+            hd:'red',
+            hw :'blue'
+        }
+
+    })
+</script>
+</body>
+</html>

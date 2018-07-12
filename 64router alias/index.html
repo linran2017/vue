@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+<body>
+<div id="hdw">
+    <router-link to="/hdphp">hdphp</router-link>
+    <router-link to="/hdcms">hdcms</router-link>
+    <router-link to="/about">关于我们</router-link>
+    <router-view></router-view>
+</div>
+<!--首页模板-->
+<script type="text/x-template" id="home">
+<div>
+    <li v-for="v in news">
+        <a href="" @click.prevent="go(v.id)">{{v.title}}</a>
+    </li>
+</div>
+</script>
+<!--内容模板-->
+<script type="text/x-template" id="content">
+<div>
+    <h1>{{field.title}}</h1>
+    <p>{{field.content}}</p>
+    <a href="" @click.prevent="back()">返回</a>
+</div>
+</script>
+<script>
+    //新闻的数据
+    var data=[
+        {id:1,title:'hdphp开源框架',content:'这是内容……'},
+        {id:2,title:'hdcms内容管理系统',content:'这是内容……'},
+        {id:3,title:'关于我们',content:'这是内容……'}
+    ];
+    //首页模板
+    var home={
+        template:'#home',
+        data(){
+            return {
+                news:data
+            }
+        },
+        methods:{
+            go(id){
+                var url='/content/'+id;
+                //跳转页面，push有历史记录，可以返回到上一个页面；
+                //如果是replace是替换页面，不能返回到上一个页面
+                this.$router.push(url);
+            }
+        }
+    }
+    //内容模板
+    const content={
+        template:'#content',
+        data(){
+            return {
+                field:{}
+            }
+        },
+        //数据发送变化时会执行里面的代码
+        watch:{
+            '$route'(to,from){
+                console.log(to);
+                console.log(from);
+                //链接的id更新时，页面的数据也会更新
+                this.load();
+            }
+        },
+        //挂彩，页面加载时就把数据初始化，里面的代码会执行
+        mounted(){
+            this.load();
+        },
+        methods:{
+            load(){
+                //把点击的id值赋值给id
+                var id=this.$route.params.id;
+                //console.log(id);
+                //循环新闻的data数组中的数据
+                for(let k=0;k<data.length;k++){
+                    //如果点击的id等于数据这一条数据中的id
+                    if(data[k].id==id){
+                        //console.log(data[k]);
+                        //就把data[k]这一条数据赋值给this.field，
+                        // 为了在内容页显示与链接中id值相对应的这一组数据
+                        this.field=data[k];
+                    }
+                }
+            },
+            back(){
+                //返回上一个页面
+                this.$router.go(-1);
+            }
+        }
+    }
+    //配置父路由和子路由
+    let routes=[
+        {path:'/',component:home},
+        {path:'/content/:id',component:content,name:'content'},
+        //在地址栏输入‘/about’时会访问第三篇文章，地址栏不会改变，还是'/about'
+        {path:'/content/3',alias:['/about']},
+        {path:'/content/1',alias:['/hdphp']},
+        {path:'/content/2',alias:['/hdcms']}
+    ];
+    //把组件交给路由器
+    let router=new VueRouter({routes});
+    new Vue({
+        el:'#hdw',
+        router
+    })
+</script>
+</body>
+</html>

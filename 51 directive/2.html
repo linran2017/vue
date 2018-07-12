@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="hdw">
+   <h1 v-star="color">标题</h1>
+   <input type="text" v-model="color" v-focus  /><br/>
+    <h1 v-hide="hide">后盾人</h1>
+    <input type="checkbox" v-model="hide">隐藏
+</div>
+<script>
+    var app=new Vue({
+        el:'#hdw',
+        data:{
+            color:'',
+            hide:true
+        },
+        directives:{
+            //绑定和更新
+            star(el,bind){
+                console.log(bind);
+                var color=bind.value?bind.value:'red';
+                el.style.cssText="color:"+color;
+            },
+            //获取焦点
+            focus:{
+                inserted(el,bind){
+                    el.focus();
+                }
+            },
+            //自定义显示隐藏
+            hide(el,bind){
+                if(bind.value){
+                    el.style.cssText="display:none";
+                }else{
+                    el.style.cssText="display:block"
+                }
+                console.log(bind);
+            }
+        }
+    })
+</script>
+</body>
+</html>
